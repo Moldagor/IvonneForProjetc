@@ -24,6 +24,10 @@ public class ManagerObject : MonoBehaviour
         textNameObject.text = objectClassification.nameObject;
         textPriceObject.text = objectClassification.priceObject.ToString();
     }
+    public void Update()
+    {
+        managerInventory = FindObjectOfType<ManagerInventory>();
+    }
     public void BuyItem()
     {
         managerInventory.AddObjectInventory(price, imageObject);

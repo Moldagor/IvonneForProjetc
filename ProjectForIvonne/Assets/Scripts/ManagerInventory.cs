@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+[RequireComponent(typeof(Animator))]
 public class ManagerInventory : MonoBehaviour
 {
     private int numberMaxInventory = 0;
@@ -10,10 +11,15 @@ public class ManagerInventory : MonoBehaviour
     [SerializeField] int allMoney = 1000;
     [SerializeField] TextMeshProUGUI textMoney;
     [SerializeField] GameObject objectInventory;
+    [SerializeField] Animator animationInv;
+    [SerializeField] Stores stores;
+    [SerializeField] List<ObjectClassification> listObjectInv = new List<ObjectClassification>();
 
-    
+    bool controlAnimation;
+
     private void Start()
     {
+
         textMoney.text = allMoney.ToString();
     }
     //adicionamos objetos al inventarios 
@@ -27,7 +33,26 @@ public class ManagerInventory : MonoBehaviour
             Image image = inventory.GetComponent<Image>();
             image.sprite = imageObject.sprite;
             textMoney.text = allMoney.ToString();
+                 
+           // listObjectInv.Add(stores.);
+           // Debug.Log("listObjectInv" + listObjectInv);
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            controlAnimation = !controlAnimation;
+            animationInv.SetBool("IsOpenInventario", controlAnimation);
 
+        }
+    }
+    public void OnMouseDown()
+    {
+        Debug.Log("Que estoy precionando 2" + objectInventory);
+    }
+    public void InstantiateItemInventory()
+    {
+        
+    }
 }
